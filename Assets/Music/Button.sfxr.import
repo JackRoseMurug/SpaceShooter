@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://chcrcnxx2ut2m"
+path="res://.godot/imported/Button.sfxr-478a3f0731447cb16b97b4a825e1b727.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Button.sfxr"
+dest_files=["res://.godot/imported/Button.sfxr-478a3f0731447cb16b97b4a825e1b727.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

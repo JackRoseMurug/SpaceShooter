@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dynsu6yv2hkv7"]
+
+[ext_resource type="AudioStream" uid="uid://dh1xsi1nbw7he" path="res://Assets/Music/SS_BGM.mp3" id="1_mcxy5"]
+
+[node name="SpaceBgm" type="AudioStreamPlayer"]
+stream = ExtResource("1_mcxy5")
+volume_db = -13.117
+autoplay = true

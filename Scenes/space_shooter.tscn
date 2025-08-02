@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpasg0kqrixvj"]
+
+[ext_resource type="Script" uid="uid://cm1c6ktnummq5" path="res://Scripts/space_shooter.gd" id="1_cn2id"]
+[ext_resource type="Texture2D" uid="uid://jnrg1wh06tvn" path="res://Assets/SpaceBg.png" id="1_x67e1"]
+[ext_resource type="Texture2D" uid="uid://brattdow1mv56" path="res://Assets/BlueShip.png" id="2_mcpq8"]
+[ext_resource type="Script" uid="uid://druo8kretfwne" path="res://Scripts/blue_ship.gd" id="3_cavgq"]
+[ext_resource type="Texture2D" uid="uid://d3ui110gbsx4s" path="res://Assets/Zone.png" id="4_3fic4"]
+[ext_resource type="Script" uid="uid://n8tnfw3gakvk" path="res://Scripts/enemy_spawner.gd" id="5_g7hab"]
+[ext_resource type="AudioStream" uid="uid://cnfp3wforo7ql" path="res://Assets/Music/Shoot.sfxr" id="5_wrhqx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7hab"]
+size = Vector2(403, 20)
+
+[node name="SpaceShooter" type="Node"]
+script = ExtResource("1_cn2id")
+
+[node name="SpaceBg" type="Sprite2D" parent="."]
+position = Vector2(202, 299.5)
+scale = Vector2(0.800781, 1.18945)
+texture = ExtResource("1_x67e1")
+
+[node name="BlueShip" type="Node2D" parent="."]
+position = Vector2(197, 562)
+script = ExtResource("3_cavgq")
+
+[node name="BlueShipSprite" type="Sprite2D" parent="BlueShip"]
+scale = Vector2(8.951, 5)
+texture = ExtResource("2_mcpq8")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BlueShip"]
+stream = ExtResource("5_wrhqx")
+
+[node name="Boundary" type="Area2D" parent="."]
+position = Vector2(6, 506)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(191.5, 0)
+shape = SubResource("RectangleShape2D_g7hab")
+
+[node name="Zone" type="Sprite2D" parent="Boundary"]
+position = Vector2(196, -9)
+scale = Vector2(12.5, 1)
+texture = ExtResource("4_3fic4")
+
+[node name="Bullets" type="Node" parent="."]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="EnemySpawner" type="Node" parent="."]
+script = ExtResource("5_g7hab")
+
+[node name="EnSpawnTimer" type="Timer" parent="EnemySpawner"]
+
+[connection signal="timeout" from="EnemySpawner/EnSpawnTimer" to="EnemySpawner" method="_on_timer_timeout"]

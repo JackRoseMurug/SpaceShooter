@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://cviisnqrqhonb"]
+
+[ext_resource type="Script" uid="uid://dl27ouphm8u70" path="res://Scripts/end.gd" id="1_pw64i"]
+[ext_resource type="AudioStream" uid="uid://chcrcnxx2ut2m" path="res://Assets/Music/Button.sfxr" id="2_67ibq"]
+[ext_resource type="Theme" uid="uid://ca20p3iq2j1cj" path="res://Assets/Themes/Button.tres" id="2_70j8v"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_pw64i"]
+
+[sub_resource type="Animation" id="Animation_67ibq"]
+resource_name = "ExitButton"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"exit"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_70j8v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_03b8h"]
+_data = {
+&"ExitButton": SubResource("Animation_67ibq"),
+&"RESET": SubResource("Animation_70j8v")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pw64i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.0
+offset_top = -57.0
+offset_right = 109.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Game Over"
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Restart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_70j8v")
+text = "Restart"
+icon = SubResource("ImageTexture_pw64i")
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_70j8v")
+text = "Exit"
+
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_67ibq")
+volume_db = -0.44
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_03b8h")
+}
+
+[connection signal="button_down" from="VBoxContainer/Restart" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="VBoxContainer/Exit" to="." method="_on_exit_button_down"]

@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlh1g1pxn6n2j"]
+
+[ext_resource type="Script" uid="uid://cntsikdkqi3c4" path="res://Scripts/options.gd" id="1_4tmxy"]
+[ext_resource type="Texture2D" uid="uid://jnrg1wh06tvn" path="res://Assets/SpaceBg.png" id="2_qyyw6"]
+[ext_resource type="Theme" uid="uid://ca20p3iq2j1cj" path="res://Assets/Themes/Button.tres" id="3_qyyw6"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_qyyw6"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4tmxy")
+
+[node name="SpaceBg" type="Sprite2D" parent="."]
+scale = Vector2(1.04762, 1.15635)
+texture = ExtResource("2_qyyw6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.5
+offset_top = -20.0
+offset_right = 97.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BGM_CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_qyyw6")
+button_pressed = true
+text = "BGM "
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SFX_CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_qyyw6")
+button_pressed = true
+text = "SFX    "
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VFX_CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("3_qyyw6")
+button_pressed = true
+text = "VFX    "
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "
+
+Credit:
+
+MUSIC (BGM) by Serhii_Kliets    
+FONTS by Jayvee Enaguas - HarvettFox96.            
+
+"
+vertical_alignment = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Back" type="Button" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_qyyw6")
+text = "BACK  "
+icon = SubResource("ImageTexture_qyyw6")
+
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/BGM_CheckButton" to="." method="_on_bgm_check_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer2/SFX_CheckButton" to="." method="_on_sfx_check_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer3/VFX_CheckButton" to="." method="_on_vfx_check_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer5/Back" to="." method="_on_back_pressed"]
